@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 struct User {
@@ -13,6 +14,8 @@ struct User {
     var password: String
     var name: String
     var description: String
+    var bigDescription: String
+    var pictureOfUser: UIImage!
 }
 
 class UserStore {
@@ -22,8 +25,8 @@ class UserStore {
     
 //  создаем несколько вариантов юзеров
     private var users: [User] = [
-        User(login: "U", password: "123", name: "Ivan Ivanov", description: "Is the most common name in Russia"),
-        User(login: "O", password: "000", name: "John Doe", description: "Is the most common name in USA")
+        User(login: "Neo", password: "123", name: "Ivan Ivanov", description: "Is the most common name in Russia", bigDescription: "Ivan is the most advanced iOS Developer in Russia 🔥", pictureOfUser: UIImage(named: "IvanPhoto")),
+        User(login: "Smith", password: "000", name: "John Doe", description: "Is the most common name in USA", bigDescription: "John is very strict and angry and is always looking for Ivan from Russia 😎", pictureOfUser: UIImage(named: "JohnPhoto"))
     ]
     
 //  паблик вар создаем для того что бы можно было в других файлах обращаться к методу currentUser

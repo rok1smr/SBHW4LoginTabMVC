@@ -13,8 +13,9 @@ class InfoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = UserStore.shared.currentUser?.name
         
-// если логи и пароль введены от существующего юзера - отображаем здесь его имя
+// если логин и пароль введены от существующего юзера - отображаем здесь его имя
         if let currentUser = UserStore.shared.currentUser {
             descriptionLabel.text = currentUser.description
         }

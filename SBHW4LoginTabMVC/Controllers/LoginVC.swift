@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -15,7 +15,39 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
+    
+    //    functions neede to shift the contents of the screen when keyboard appears
+        @objc func keyboardWillShow(sender: NSNotification) {
+             self.view.frame.origin.y = -50 // Move view 150 points upward
+        }
+        @objc func keyboardWillHide(sender: NSNotification) {
+             self.view.frame.origin.y = 0 // Move view to original position
+        }
+    
+    
+    //    функция для переключения между текст филдами с помощью клавиатуры
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            switchBasedNextTextField(textField)
+            return true
+        }
+        
+        //    свичт кейс для переключения между текст филдами с помощью клавиатуры
+        private func switchBasedNextTextField(_ textField: UITextField) {
+            switch textField {
+            case loginTextField:
+                passwordTextField.becomeFirstResponder()
+            default:
+                passwordTextField.resignFirstResponder()
+                loginButtonPressed()
+            }
+        }
     
 //  функция очистки полей ввода
     func clearTextFields() {
@@ -33,9 +65,24 @@ class LoginVC: UIViewController {
         UserStore.shared.login(with: loginTextField.text!, password: passwordTextField.text!)
     }
     
+    
+    @IBAction func hintButtonPressed(_ sender: Any) {
+        showAlert(title: "You have 2 users, so check them both out!", message: "Neo - 123 \n Smith - 000")
+    }
+    
+    
 //  функция которая выполняется при нажатии кнопки логин
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
+    @IBAction func loginButtonPressed() {
+        guard let checkLogin = loginTextField.text, !checkLogin.isEmpty else {
+            showAlert(title: "Wrong User Name or Password", message: "Please check your entries")
+            return
+        }
+        guard let checkPassword = passwordTextField.text, !checkPassword.isEmpty else {
+            showAlert(title: "Wrong User Name or Password", message: "Please check your entries")
+            return
+        }
         submit()
+        performSegue(withIdentifier: "toHomeScreen", sender: UIButton.self)
     }
     
 //  функция для работы анвинд сигвея
