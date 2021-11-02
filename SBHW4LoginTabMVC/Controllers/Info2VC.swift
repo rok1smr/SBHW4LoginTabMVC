@@ -12,7 +12,7 @@ class Info2VC: UIViewController {
     @IBOutlet weak var photoOfUser: UIImageView!
     @IBOutlet weak var bigDescription: UILabel!
     
-    var user = User.getUser()
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()

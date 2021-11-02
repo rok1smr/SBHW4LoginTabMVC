@@ -11,12 +11,16 @@ class InfoVC: UIViewController {
 
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var user = User.getUser()
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         descriptionLabel.text = user.person.description
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let info2VCont = segue.destination as? Info2VC else { return }
+        info2VCont.user = user
     }
 }

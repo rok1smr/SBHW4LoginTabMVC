@@ -83,7 +83,7 @@
         <!--UserVC-->
         <scene sceneID="lgA-If-2TO">
             <objects>
-                <viewController id="Sa3-2m-sl9" customClass="UserVC" sceneMemberID="viewController">
+                <viewController id="Sa3-2m-sl9" customClass="UserVC" customModule="SBHW4LoginTabMVC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I9X-N9-jgw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

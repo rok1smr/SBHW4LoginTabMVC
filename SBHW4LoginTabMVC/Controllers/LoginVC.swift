@@ -71,7 +71,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             showAlert(title: "Wrong User Name or Password", message: "Please check your entries")
             return
         }
-        performSegue(withIdentifier: "toHomeScreen", sender: self)
     }
     
     @IBAction func hintButtonPressed(_ sender: Any) {
@@ -87,16 +86,19 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     
     //  метод препер фор сигвей в который заложена логика проверки на пустые поля и очистки полей ввода если поля были не пустыми, а так же проверяется зарегистрирован ли такой юзер вообще
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let tabBarController = segue.destination as? UITabBarController else { return }
+        guard let viewControllers = tabBarController.viewControllers else { return }
+        
+        viewControllers.forEach {
+            if let HomeVCont = $0 as? HomeVC {
+                HomeVCont.user = user
+            } else if let navigationViewController = $0 as? UINavigationController {
+                let InfoVCont = navigationViewController.topViewController as! UserVC
+                InfoVCont.user = user
+            }
+        }
+    }
 }
 
 // алерт контроллер

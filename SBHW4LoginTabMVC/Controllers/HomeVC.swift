@@ -10,7 +10,7 @@ import UIKit
 class HomeVC: UIViewController {
     @IBOutlet weak var textLabel: UILabel!
     
-    var user = User.getUser()
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
