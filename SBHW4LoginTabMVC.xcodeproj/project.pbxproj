@@ -66,9 +66,8 @@
 			children = (
 				085E13B1272D1BB600C0D26C /* Setup */,
 				08DC215E272E83E9000BA602 /* Models */,
-				08DC2160272E8410000BA602 /* Views */,
 				08DC215F272E8405000BA602 /* Controllers */,
-				085E13A8272D1B8700C0D26C /* LaunchScreen.storyboard */,
+				08DC2160272E8410000BA602 /* Views */,
 			);
 			path = SBHW4LoginTabMVC;
 			sourceTree = "<group>";
@@ -107,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				085E13A3272D1B8600C0D26C /* Main.storyboard */,
+				085E13A8272D1B8700C0D26C /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";

@@ -12,8 +12,6 @@ class Info2VC: UIViewController {
     @IBOutlet weak var photoOfUser: UIImageView!
     @IBOutlet weak var bigDescription: UILabel!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = UserStore.shared.currentUser?.name
@@ -24,6 +22,4 @@ class Info2VC: UIViewController {
         }
     }
     
-
-
 }

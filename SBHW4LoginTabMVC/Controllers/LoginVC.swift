@@ -23,55 +23,56 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
     
-    //    functions neede to shift the contents of the screen when keyboard appears
-        @objc func keyboardWillShow(sender: NSNotification) {
-             self.view.frame.origin.y = -50 // Move view 150 points upward
-        }
-        @objc func keyboardWillHide(sender: NSNotification) {
-             self.view.frame.origin.y = 0 // Move view to original position
-        }
+    //  функция которая возвращает нам нужного юзера исходя из логина и пароля которые мы берем из текст филдов
+    func submit() {
+        UserStore.shared.login(with: loginTextField.text!, password: passwordTextField.text!)
+    }
     
-    
-    //    функция для переключения между текст филдами с помощью клавиатуры
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            switchBasedNextTextField(textField)
-            return true
-        }
-        
-        //    свичт кейс для переключения между текст филдами с помощью клавиатуры
-        private func switchBasedNextTextField(_ textField: UITextField) {
-            switch textField {
-            case loginTextField:
-                passwordTextField.becomeFirstResponder()
-            default:
-                passwordTextField.resignFirstResponder()
-                loginButtonPressed()
-            }
-        }
-    
-//  функция очистки полей ввода
+    //  функция очистки полей ввода
     func clearTextFields() {
         loginTextField.text = ""
         passwordTextField.text = ""
     }
     
-//  функция позволяющая скрывать клавиатуру тапом по экрану
+    // MARK: - Keyboard -
+    
+    //    functions neede to shift the contents of the screen when keyboard appears
+    @objc func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y = -50 // Move view 150 points upward
+    }
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0 // Move view to original position
+    }
+    
+    //    функция для переключения между текст филдами с помощью клавиатуры
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switchBasedNextTextField(textField)
+        return true
+    }
+    
+    //    свичт кейс для переключения между текст филдами с помощью клавиатуры
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case loginTextField:
+            passwordTextField.becomeFirstResponder()
+        default:
+            passwordTextField.resignFirstResponder()
+            loginButtonPressed()
+        }
+    }
+    
+    //  функция позволяющая скрывать клавиатуру тапом по экрану
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
-//  функция которая возвращает нам нужного юзера исходя из логина и пароля которые мы берем из текст филдов
-    func submit() {
-        UserStore.shared.login(with: loginTextField.text!, password: passwordTextField.text!)
-    }
-    
+    // MARK: - IBACTIONS -
     
     @IBAction func hintButtonPressed(_ sender: Any) {
         showAlert(title: "You have 2 users, so check them both out!", message: "Neo - 123 \n Smith - 000")
     }
     
-    
-//  функция которая выполняется при нажатии кнопки логин
+    //  функция которая выполняется при нажатии кнопки логин
     @IBAction func loginButtonPressed() {
         guard let checkLogin = loginTextField.text, !checkLogin.isEmpty else {
             showAlert(title: "Wrong User Name or Password", message: "Please check your entries")
@@ -85,11 +86,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         performSegue(withIdentifier: "toHomeScreen", sender: UIButton.self)
     }
     
-//  функция для работы анвинд сигвея
+    // MARK: - NAVIGATION -
+    
+    //  функция для работы анвинд сигвея
     @IBAction func unwind( _ seg: UIStoryboardSegue) {
     }
     
-//  метод препер фор сигвей в который заложена логика проверки на пустые поля и очистки полей ввода если поля были не пустыми, а так же проверяется зарегистрирован ли такой юзер вообще
+    
+    //  метод препер фор сигвей в который заложена логика проверки на пустые поля и очистки полей ввода если поля были не пустыми, а так же проверяется зарегистрирован ли такой юзер вообще
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let checkLogin = loginTextField.text, !checkLogin.isEmpty else {
             showAlert(title: "Wrong User Name or Password", message: "Please check your entries")
