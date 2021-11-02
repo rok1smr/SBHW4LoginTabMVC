@@ -10,13 +10,11 @@ import UIKit
 class HomeVC: UIViewController {
     @IBOutlet weak var textLabel: UILabel!
     
+    var user = User.getUser()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-// если логи и пароль введены от существующего юзера - отображаем здесь его имя
-        if let currentUser = UserStore.shared.currentUser {
-            textLabel.text = "You logged in as: \(currentUser.name), click on the user icon in the tab bar to find out more about him 😏"
-        }
+        textLabel.text = "You logged in as: \(user.person.name), click on the user icon in the tab bar to find out more about him 😏"
     }
     
 //  при нажатии кнопки логаут выполяется анвинд сигвэй

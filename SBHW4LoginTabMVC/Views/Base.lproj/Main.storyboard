@@ -150,7 +150,6 @@
         <!--Info2VC-->
         <scene sceneID="bmd-wJ-0zc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dFk-PA-Q5a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="74g-tE-NRv" customClass="Info2VC" customModule="SBHW4LoginTabMVC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Whh-ai-mZG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -184,6 +183,7 @@
                         <outlet property="photoOfUser" destination="sI3-VW-fIa" id="jQM-FP-XFb"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFk-PA-Q5a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4220.625" y="527.5"/>
         </scene>
@@ -260,7 +260,7 @@
                     <tabBarItem key="tabBarItem" title="User" image="person" catalog="system" id="P6U-4x-vlM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xbf-5c-934">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

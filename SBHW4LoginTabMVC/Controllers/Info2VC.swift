@@ -12,14 +12,15 @@ class Info2VC: UIViewController {
     @IBOutlet weak var photoOfUser: UIImageView!
     @IBOutlet weak var bigDescription: UILabel!
     
+    var user = User.getUser()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = UserStore.shared.currentUser?.name
+        title = user.person.name
         
-        if let currentUser = UserStore.shared.currentUser {
-            bigDescription.text = currentUser.bigDescription;
-            photoOfUser.image = currentUser.pictureOfUser
-        }
+        bigDescription.text = user.person.bigDescription
+        photoOfUser.image = UIImage(named: "\(user.person.pictureOfUser)")
+        
     }
     
 }
